@@ -3,6 +3,6 @@
     public enum MovementType
     {
         دخول,
-        خروج
+        خروج,
     }
 }

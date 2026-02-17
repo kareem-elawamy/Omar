@@ -1,4 +1,4 @@
 export enum Category {
-  عطارة,
-  بقاله
+  Attara = 0, // عطارة
+  Grocery = 1, // بقالة
 }

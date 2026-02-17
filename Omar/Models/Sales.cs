@@ -13,6 +13,5 @@ namespace Omar.Models
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
         public ICollection<SaleItems> Items { get; set; } = new List<SaleItems>();
-
     }
 }

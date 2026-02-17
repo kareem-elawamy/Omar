@@ -4,5 +4,5 @@ import { Login } from './Components/login/login';
 
 export const routes: Routes = [
   { path: 'add-employee', component: AddEmployee },
-  { path: 'login', component: Login }
+  { path: 'login', component: Login },
 ];
