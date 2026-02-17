@@ -20,9 +20,9 @@ builder.Services.AddDbContext<AddDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), options =>
     options.EnableRetryOnFailure(
-        maxRetryCount: 5,  // ÚÏÏ ãÑÇÊ ÅÚÇÏÉ ÇáãÍÇæáÉ
-        maxRetryDelay: TimeSpan.FromSeconds(10), // æŞÊ ÇáÇäÊÙÇÑ Èíä ÇáãÍÇæáÇÊ
-        errorNumbersToAdd: null // ÇáÃÎØÇÁ ÇáÊí íÌÈ ÇáÊÚÇãá ãÚåÇ (íãßä ÊÑßåÇ null ááßá)
+        maxRetryCount: 5,  // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        maxRetryDelay: TimeSpan.FromSeconds(10), // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        errorNumbersToAdd: null // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ null ï¿½ï¿½ï¿½ï¿½)
     ));
 });
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(op =>
@@ -64,6 +64,17 @@ builder.Services.AddAuthentication(
     }
 
     );
+    // CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 
 var app = builder.Build();
 
@@ -72,6 +83,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+app.UseCors("AllowAll");
+
 
 app.UseHttpsRedirection();
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\TC\\source\\repos\\Omar\\Omar\\Omar.csproj": {}
+    "C:\\Users\\TC\\source\\repos\\Omar\\omar\\Omar.csproj": {}
   },
   "projects": {
-    "C:\\Users\\TC\\source\\repos\\Omar\\Omar\\Omar.csproj": {
+    "C:\\Users\\TC\\source\\repos\\Omar\\omar\\Omar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\TC\\source\\repos\\Omar\\Omar\\Omar.csproj",
+        "projectUniqueName": "C:\\Users\\TC\\source\\repos\\Omar\\omar\\Omar.csproj",
         "projectName": "Omar",
-        "projectPath": "C:\\Users\\TC\\source\\repos\\Omar\\Omar\\Omar.csproj",
+        "projectPath": "C:\\Users\\TC\\source\\repos\\Omar\\omar\\Omar.csproj",
         "packagesPath": "C:\\Users\\TC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\TC\\source\\repos\\Omar\\Omar\\obj\\",
+        "outputPath": "C:\\Users\\TC\\source\\repos\\Omar\\omar\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

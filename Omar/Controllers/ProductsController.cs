@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Omar.Data;
 using Omar.Dtos.ProductDto;
+using Omar.Eunm;
 
 namespace Omar.Controllers
 {
@@ -85,6 +86,15 @@ namespace Omar.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+        [HttpGet("ByCategory/{category}")]
+        public async Task<IActionResult> GetProductsByCategory(Category category)
+        {
+            var products = await _context.Products
+                .Where(p => p.Category == category && p.IsActive)
+                .ToListAsync();
+
+            return Ok(products);
         }
 
     }
