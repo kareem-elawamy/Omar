@@ -1,0 +1,76 @@
+<div class="bg-gray-200">
+  <div class="min-h-screen flex items-center justify-center">
+
+    <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md flex flex-col items-center">
+
+      <!-- Logo -->
+      <div class="mb-6 p-4 rounded-xl bg-green-50 shadow"
+        style="width: 75px; height: 75px; border-radius: 50%; align-items: center;  display: flex;">
+        <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
+          <i class="fa-solid fa-shop text-2xl" style="color: rgb(76 174 79);"></i>
+        </div>
+      </div>
+
+      <h2 class="text-2xl font-bold mb-6 text-center">
+        مرحبًا بعودتك
+      </h2>
+      <p class="text-sm text-gray-600 mb-8 text-center">
+        يرجى إدخال بياناتك لتسجيل الدخول إلى نظام نقاط البيع.
+      </p>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="w-full space-y-5">
+
+        <!-- Email -->
+        <div class="space-y-2">
+          <label class="text-sm font-medium text-gray-700">
+            Email Address
+          </label>
+
+          <div
+            class="flex items-center gap-3 border border-gray-300 rounded-lg px-4 py-3 focus-within:ring-2 focus-within:ring-primary transition">
+
+            <i class="fa-regular fa-envelope text-gray-400"></i>
+
+            <input formControlName="email" type="email" placeholder="you@company.com"
+              class="w-full bg-transparent outline-none text-sm" />
+          </div>
+
+          <p *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="text-red-500 text-xs">
+            Please enter a valid email
+          </p>
+        </div>
+
+        <!-- Password -->
+        <div class="space-y-2">
+          <label class="text-sm font-medium text-gray-700">
+            Password
+          </label>
+
+          <div
+            class="flex items-center gap-3 border border-gray-300 rounded-lg px-4 py-3 focus-within:ring-2 focus-within:ring-primary transition">
+
+            <i class="fa-solid fa-lock text-gray-400"></i>
+
+            <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="••••••••"
+              class="w-full bg-transparent outline-none text-sm" />
+
+            <i class="fa-regular cursor-pointer text-gray-400" [class.fa-eye]="!showPassword"
+              [class.fa-eye-slash]="showPassword" (click)="showPassword = !showPassword">
+            </i>
+          </div>
+        </div>
+
+        <!-- Button -->
+        <button type="submit" [disabled]="loginForm.invalid || loading" class="w-full py-3 rounded-xl font-semibold text-white
+
+                 transition disabled:opacity-50" style="background-color: rgb(76 174 79);">
+
+          <span *ngIf="!loading">Login</span>
+          <span *ngIf="loading">Logging in...</span>
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+</div>
