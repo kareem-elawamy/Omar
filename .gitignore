@@ -1,0 +1,20 @@
+################ FRONTEND ################
+
+Client/node_modules/
+Client/dist/
+Client/.angular/
+
+################ BACKEND (.NET) ################
+
+**/bin/
+**/obj/
+.vs/
+
+################ COMMON ################
+
+.env
+*.log
+*.cache
+*.dll
+*.exe
+*.pdb
