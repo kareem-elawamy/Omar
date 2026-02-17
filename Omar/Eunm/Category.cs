@@ -3,6 +3,6 @@
     public enum Category
     {
         عطارة,
-        بقاله
+        بقاله,
     }
 }

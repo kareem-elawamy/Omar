@@ -24,7 +24,7 @@ export class Auth {
   addEmployee(employee: Employee): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
+      Authorization: `Bearer ${this.token}`,
     });
 
     return this.http.post(`${this.apiUrl}/api/Account/addEmployee`, employee, { headers });
@@ -39,7 +39,8 @@ export class Auth {
         console.log(res.message);
 
         return res;
-      }));
+      }),
+    );
   }
   getToken(): string {
     return localStorage.getItem(this.token) || '';
@@ -48,19 +49,18 @@ export class Auth {
     const token = this.getToken();
     if (!token) return false;
     try {
-      const decoded = jwtDecode<JwtPayload>(token)
-      const currentTime = Math.floor(Date.now() / 1000)
+      const decoded = jwtDecode<JwtPayload>(token);
+      const currentTime = Math.floor(Date.now() / 1000);
       if (decoded.exp && decoded.exp < currentTime) {
         this.logout();
         return false;
       }
-      return true
+      return true;
     } catch (error) {
       console.error('Failed to decode token', error);
-      this.logout()
+      this.logout();
       return false;
     }
-
   }
   logout(): void {
     localStorage.removeItem(this.token);
@@ -95,5 +95,4 @@ export class Auth {
   isEmployee(): boolean {
     return this.getUserRoles().includes('Employee');
   }
-
 }

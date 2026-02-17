@@ -12,11 +12,11 @@ namespace Omar.Models
         public decimal Quantity { get; set; }
 
         public MovementType MovementType { get; set; }
+
         // In - Out
 
         public DateTime MovementDate { get; set; } = DateTime.Now;
 
         public string? Note { get; set; }
-
     }
 }

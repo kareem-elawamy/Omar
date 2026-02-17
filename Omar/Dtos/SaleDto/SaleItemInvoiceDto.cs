@@ -4,7 +4,10 @@
     {
         public string ProductName { get; set; } = null!;
         public decimal Quantity { get; set; }
-        public decimal Price { get; set; }
+
+        // غيرنا الاسم لـ SellingPrice عشان الاتساق
+        public decimal SellingPrice { get; set; }
+
         public decimal Total { get; set; }
     }
 }
