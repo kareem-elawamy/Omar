@@ -68,7 +68,9 @@ builder
             IssuerSigningKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(Jwt["securityKey"]!)
             ),
+
         };
+
     });
 
 // CORS

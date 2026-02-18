@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class Login {
   private authService = inject(Auth);
   showPassword = false;
-  router=inject(Router);
+  router = inject(Router);
   loading = false;
   private fb = inject(FormBuilder);
   employee: Employee = { email: '', password: '' };
@@ -30,16 +30,20 @@ export class Login {
       this.employee.password = password || '';
       console.log(this.loginForm.value);
       this.authService.login(this.employee).subscribe({
+        // داخل onSubmit في ملف الـ login.ts
         next: (res) => {
-          console.log('Success:', res);
-          this.loading = false;
           if (res.isSuccess) {
-            alert('تم تسجيل الدخول بنجاح!');
-            if(this.authService.isAdmin()){
+            // يفضل التأكد أن التوكن تم حفظه قبل التوجيه
+            console.log('Login Success, Token stored');
+
+            // فحص الأدوار بناءً على ما في التوكن (Owner)
+            if (this.authService.isAdmin()) {
               this.router.navigate(['/dashboard']);
-            }
-            if(this.authService.isEmployee()){
+            } else if (this.authService.isEmployee()) {
               this.router.navigate(['/pos']);
+            } else {
+              // دور غير معروف أو افتراضي
+              this.router.navigate(['/']);
             }
           }
         },

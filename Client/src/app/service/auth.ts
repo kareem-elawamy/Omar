@@ -19,24 +19,20 @@ export interface JwtPayload {
 export class Auth {
   private apiUrl: string = 'http://localhost:5263';
   private http = inject(HttpClient); // استخدام HttpClient أسهل وأفضل
-  private token = 'token'; // استرجاع التوكن من التخزين
-
+  private token = 'auth_token';
   addEmployee(employee: Employee): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${this.token}`,
-    });
 
-    return this.http.post(`${this.apiUrl}/api/Account/addEmployee`, employee, { headers });
+    return this.http.post(`${this.apiUrl}/api/Account/addEmployee`, employee);
   }
   login(employee: Employee): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/api/Account/login`, employee).pipe(
       map((res) => {
-        if (res.isSuccess) {
-          localStorage.setItem(this.token, res.tokens);
-          console.log(res.tokens);
+        if (res.token) {
+          localStorage.setItem(this.token, res.token);
+          console.log('Token Saved:', res.token);
+        } else {
+          console.warn('Login failed:', res.message);
         }
-        console.log(res.message);
 
         return res;
       }),
@@ -90,9 +86,24 @@ export class Auth {
   }
 
   isAdmin(): boolean {
-    return this.getUserRoles().includes('Admin');
+    return this.getUserRoles().includes('Owner');
   }
   isEmployee(): boolean {
     return this.getUserRoles().includes('Employee');
+  }
+  saveToken(token: string): void {
+    localStorage.setItem(this.token, token);
+  }
+  getuserEmail(): string {
+    const token = this.getToken();
+    if (!token) return '';
+    try {
+      const decoded = jwtDecode<JwtPayload>(token);
+      return decoded.email || '';
+    } catch (error) {
+      console.error('Failed to decode token', error);
+      return '';
+
+    }
   }
 }

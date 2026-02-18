@@ -8,7 +8,7 @@ namespace Omar.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Owner")]
+    [Authorize]
     public class DashboardController : ControllerBase
     {
         private readonly AddDbContext _context;

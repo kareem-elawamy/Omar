@@ -1,0 +1,123 @@
+@reference "../../../styles.css";
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.glass-sidebar {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border-left: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+/* تخصيص السكرول بار */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+/* تنسيق الزر المتدرج الاحترافي */
+.btn-primary-gradient {
+  @apply flex items-center gap-2 px-6 py-3 rounded-xl text-sm text-white transition-all duration-300;
+
+  /* استخدام الألوان التي عرفناها في tailwind.config.js */
+  background: linear-gradient(135deg, #059669 0%, #34d399 100%);
+  box-shadow: 0 10px 20px -5px rgba(5, 150, 105, 0.3);
+}
+
+.btn-primary-gradient:hover {
+  @apply -translate-y-0.5 shadow-lg;
+  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+  box-shadow: 0 15px 25px -5px rgba(5, 150, 105, 0.4);
+}
+
+.btn-primary-gradient:active {
+  @apply scale-95;
+}
+
+/* تحسين شكل النصوص العربية */
+.header-content h2 {
+  font-family: 'Cairo', sans-serif;
+  /* تحسين ظهور الحروف العربية */
+  line-height: 1.4;
+}
+
+/* هذا السطر يخبر Tailwind v4 بمكان ملف الستايل الرئيسي لقراءة الكلاسات */
+@reference "../../../styles.css";
+
+.stat-card {
+  /* تطبيق كلاسات Tailwind باستخدام @apply */
+  @apply rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1 border border-transparent;
+
+  /* تأثير الـ Glassmorphism المخصص */
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+.icon-box {
+  @apply p-2.5 rounded-xl transition-colors duration-300 flex items-center justify-center;
+}
+
+.trend-badge {
+  @apply flex items-center text-xs font-bold px-2.5 py-1 rounded-full border;
+}
+
+/* تحسين الخطوط العربية */
+h3 {
+  font-family: 'Manrope', 'Cairo', sans-serif;
+}
+
+.animationgreen:hover {
+  border: 1px solid #34d399;
+  animation: floating 1s ease-in-out;
+
+}
+
+.animationred:hover {
+  border: 1px solid #f87171;
+  animation: floating 1s ease-in-out;
+
+}
+
+.animationgreen:hover .bg-primary {
+  background: linear-gradient(135deg, #059669 0%, #34d399 100%);
+}
+
+.animationgreen:hover .bg-primary i {
+  color: white;
+}
+
+.animationgreen .bg-primary i {
+  color: #059669;
+}
+
+.animationgreen .bg-primary .bg-success {
+  background: linear-gradient(135deg, #059669 0%, #34d399 100%);
+  color: white;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-8px);
+    /* زيادة بسيطة في المسافة تعطي إحساساً بالنعومة */
+  }
+}
+
+.smooth-up {
+  /* infinite: مستمر */
+  /* alternate: يذهب ويعود لنقطة الصفر بدل القفز */
+  /* ease-in-out: يبدأ ببطء وينتهي ببطء */
+  animation: floating 2s ease-in-out infinite alternate;
+
+}

@@ -104,6 +104,8 @@ namespace Omar.Controllers
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(claims),
+                    Issuer = _configuration["JWTSetting:ValidIssuer"],
+                    Audience = _configuration["JWTSetting:ValidAudience"],
                     Expires = DateTime.UtcNow.AddDays(7),
                     SigningCredentials = new SigningCredentials(
                         new SymmetricSecurityKey(key),
@@ -111,6 +113,7 @@ namespace Omar.Controllers
                     ),
                 };
                 var token = tokenHeader.CreateToken(tokenDescriptor);
+                
                 return tokenHeader.WriteToken(token);
             }
             catch (Exception ex)

@@ -1,6 +1,6 @@
-
+// interface/AuthResponse.ts
 export interface AuthResponse {
   isSuccess: boolean;
-  tokens: string;
   message: string;
+  token: string; // تأكد إنها token مش tokens
 }
